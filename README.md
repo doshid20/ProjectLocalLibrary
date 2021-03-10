@@ -13,5 +13,7 @@
 - Most Popular books
 - Most Common Genre
 
-![Image](https://https://github.com/doshid20/ProjectLocalLibrary/blob/main/Project_Local_Library.png)
+# Project Thumbnail
+
+![Image](https://github.com/doshid20/ProjectLocalLibrary/blob/main/Project_Local_Library.png)
 
