@@ -1,22 +1,24 @@
 // Note: Please do not change the name of the functions. The tests use those names to validate your code.
 
 function findAccountById(accounts, id) {
-
-  const findaccountId = accounts.find((element) => element.id === id);
-  return findaccountId;
+  // Find account using account id
+  const findAccountId = accounts.find((element) => element.id === id);
+  return findAccountId;
 }
 
 function sortAccountsByLastName(accounts) {
-  const accountsortedinorder = accounts.sort((accountA, accountB) => 
+
+  // sorting account by last name;
+  const accountSortedInOrder = accounts.sort((accountA, accountB) => 
   accountA.name.last.toLowerCase() > accountB.name.last.toLowerCase() ? 1 : -1);
-  return accountsortedinorder;
+  return accountSortedInOrder;
+
 }
 
 function getTotalNumberOfBorrows(account, books) {
-
-  let accumulator = 0;
   
-  const totalNumberofBorrowByAccount = books.forEach((book) => {
+  let accumulator = 0;
+  const totalNumberOfBorrowByAccount = books.forEach((book) => {
     const borrowbook = book.borrows.forEach((borrow) => {
 
       if (borrow.id === account.id) {
@@ -28,15 +30,15 @@ function getTotalNumberOfBorrows(account, books) {
   return accumulator;
 }
 
-function getAuthorById(authors, id) {
-  const author = authors.find((author) => author.id == id);
-  return author;
-}
-
 function getBooksPossessedByAccount(account, books, authors) {
+  // empty array 
   let result = [];
+
+  /* add book to result 
+   * @condition - borrow.id === account.id && !borrow.returned
+   */
   books.forEach((book) => {
-       const borrowedbook = book.borrows.forEach((borrow) =>  {
+       const borrowedBook = book.borrows.forEach((borrow) =>  {
            if(borrow.id === account.id && !borrow.returned) {
               result.push(book);
            }
@@ -45,13 +47,23 @@ function getBooksPossessedByAccount(account, books, authors) {
    result = result.map((book) => {
     let author =  getAuthorById(authors, book.authorId);
     
+    /* create new object and added to result */
     const newObjWithAuthor = {
       ...book,
       author,
     }
     return newObjWithAuthor;
   });
+ 
+  //books taken out by an account with the author embedded
   return result;
+}
+
+// helper function to find author by id
+
+function getAuthorById(authors, id) {
+  const author = authors.find((author) => author.id == id);
+  return author;
 }
 
 module.exports = {
@@ -60,3 +72,4 @@ module.exports = {
   getTotalNumberOfBorrows,
   getBooksPossessedByAccount,
 };
+
